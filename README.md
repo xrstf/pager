@@ -14,12 +14,13 @@ Examples
 ```go
 import "github.com/xrstf/pager"
 
-currentPage   := 0 // pages start at zero
-totalElements := 1234
+currentPage     := 0 // pages start at zero
+elementsPerPage := 10
+totalElements   := 1234
 
 // a basic pager sets a few sane default values;
 // use pager.NewPager() to control all of them
-myPager := pager.NewBasicPager(currentPage, totalElements)
+myPager := pager.NewBasicPager(currentPage, totalElements, elementsPerPage)
 
 // links is a []pager.Link slice
 links := myPager.Links()

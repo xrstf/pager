@@ -50,6 +50,10 @@ func (l *Link) String() string {
 	}
 }
 
+func (l *Link) Page1Based() int {
+	return l.Page + 1
+}
+
 type Pager struct {
 	currentPage    int
 	totalElements  int
@@ -78,8 +82,16 @@ func NewPager(currentPage int, totalElements int, perPage int, maxLinks int, lin
 	return Pager{currentPage, totalElements, perPage, maxLinks, linksLeftRight, linksOnEnd, pages}
 }
 
-func NewBasicPager(currentPage int, totalElements int) Pager {
-	return NewPager(currentPage, totalElements, 10, 10, 2, 2)
+func NewBasicPager(currentPage int, totalElements int, perPage int) Pager {
+	return NewPager(currentPage, totalElements, perPage, 10, 2, 2)
+}
+
+func (p *Pager) CurrentPage() int {
+	return p.currentPage
+}
+
+func (p *Pager) TotalPages() int {
+	return p.pages
 }
 
 func (p *Pager) Links() []Link {
